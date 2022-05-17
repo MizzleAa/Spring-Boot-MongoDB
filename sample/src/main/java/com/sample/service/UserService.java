@@ -39,10 +39,10 @@ public class UserService {
 
     @Transactional
     public ResponseEntity<?> update(UpdateUser updateUser){
-        Optional<User> user = userRepository.findByEmail(updateUser.getEmail());
-        user.get().update(updateUser.getName(), updateUser.getAge());
-        userRepository.save(user.get());
-        return ResponseEntity.ok(user.get());
+        User user = userRepository.findByEmail(updateUser.getEmail()).get();
+        user.update(updateUser.getName(), updateUser.getAge());
+        userRepository.save(user);
+        return ResponseEntity.ok(user);
     }
 
     @Transactional

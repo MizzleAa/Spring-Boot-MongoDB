@@ -1,19 +1,32 @@
 package com.sample.domain.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Builder;
 import lombok.Data;
 
+
+@DynamicUpdate
 @Data
+@Entity
 @Document(collection="user")
 public class User {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String _id;
+
     private String email;
+
     private String password;
+
     private String name;
+
     private int age;
 
     @Builder
